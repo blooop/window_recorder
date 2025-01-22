@@ -16,4 +16,3 @@ args:
   - git
   - pixi
   - ssh
-  - privileged

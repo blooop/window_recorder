@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG,
                     format='[%(levelname)s %(asctime)s %(pathname)s:%(lineno)d] %(message)s',
                     datefmt='%m-%d %H:%M:%S', handlers=[ch])
 
-vid_path="tmp.mp4"
+vid_path="Captures/uniq12345.mp4"
 
 with WindowRecorder(["WhatsApp Web"],video_path=vid_path):
     start = time.time()
@@ -21,5 +21,6 @@ with WindowRecorder(["WhatsApp Web"],video_path=vid_path):
 import panel as pn
 import bencher as bch
 vid_path=bch.VideoWriter.convert_to_compatible_format(vid_path)
-
+print(vid_path)
+# exit()
 pn.pane.Video(vid_path).show()
