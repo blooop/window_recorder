@@ -80,6 +80,8 @@ class WindowRecorder:
         if self.save_dir is None:
             self.save_dir = cfg.CAPTURE_DIR
 
+        self.output_file=None
+
         # Register signal handlers
         self.record_process = None
         signal.signal(signal.SIGINT, self.signal_handler)
@@ -89,12 +91,12 @@ class WindowRecorder:
         if not self.record:
             return self
         os.makedirs(self.save_dir, exist_ok=True)
-        output = os.path.join(self.save_dir,
+        self.output_file = os.path.join(self.save_dir,
                               f"{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}_{self.suffix}.mp4")
-        logger.debug(f"Recording video to {output}")
+        logger.debug(f"Recording video to {self.output_file}")
         self.q = SimpleQueue()
         self.record_process = Process(target=_record_loop,
-                                      args=(self.q, output, self.monitor, self.frame_rate))
+                                      args=(self.q, self.output_file, self.monitor, self.frame_rate))
         self.record_process.start()
         return self
 
