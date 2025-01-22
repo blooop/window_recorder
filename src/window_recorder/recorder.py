@@ -12,8 +12,7 @@ from typing import Iterable, AnyStr
 import signal
 
 logger = logging.getLogger(__name__)
-
-
+from ewmh import EWMH
 def _record_loop(q: SimpleQueue, filename, monitor, frame_rate):
     with mss() as sct:
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
@@ -54,7 +53,18 @@ class WindowRecorder:
             output = subprocess.check_output(["xwininfo"], universal_newlines=True)
             logger.info(f"Selected {output}")
         else:
-            for name in window_names:
+            window_manager_manager = EWMH()
+            client_list = window_manager_manager.getClientList()
+
+            active_window_names = []
+            for window in client_list:
+                active_window_names.append(window_manager_manager.getWmName(window).decode("utf-8"))
+            # print(active_window_names)
+            for name_pattern in window_names:
+                name = name_pattern
+                for window in active_window_names:
+                    if name_pattern in window:
+                        name=window
                 try:
                     output = subprocess.check_output(["xwininfo", "-name", name], universal_newlines=True)
                     break
