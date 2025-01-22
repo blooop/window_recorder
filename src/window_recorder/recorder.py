@@ -44,7 +44,7 @@ def _record_loop(q: SimpleQueue, filename, monitor, frame_rate):
 class WindowRecorder:
     """Programatically video record a window in Linux (requires xwininfo)"""
 
-    def __init__(self, window_names: Iterable[AnyStr] = None, frame_rate=30.0, name_suffix="", save_dir=None,
+    def __init__(self, window_names: Iterable[AnyStr] = None, frame_rate=30.0, name_suffix="", save_dir=None,video_path=None,
                  record=True):
         self.record = record
         if not self.record:
@@ -80,7 +80,7 @@ class WindowRecorder:
         if self.save_dir is None:
             self.save_dir = cfg.CAPTURE_DIR
 
-        self.output_file=None
+        self.video_path=video_path
 
         # Register signal handlers
         self.record_process = None
@@ -91,12 +91,13 @@ class WindowRecorder:
         if not self.record:
             return self
         os.makedirs(self.save_dir, exist_ok=True)
-        self.output_file = os.path.join(self.save_dir,
-                              f"{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}_{self.suffix}.mp4")
-        logger.debug(f"Recording video to {self.output_file}")
+        if self.video_path is None:
+            self.video_path = os.path.join(self.save_dir,
+                                f"{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}_{self.suffix}.mp4")
+        logger.debug(f"Recording video to {self.video_path}")
         self.q = SimpleQueue()
         self.record_process = Process(target=_record_loop,
-                                      args=(self.q, self.output_file, self.monitor, self.frame_rate))
+                                      args=(self.q, self.video_path, self.monitor, self.frame_rate))
         self.record_process.start()
         return self
 
