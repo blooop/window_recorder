@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 def _record_loop(q: SimpleQueue, filename, monitor, frame_rate):
     with mss() as sct:
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        fourcc = cv2.VideoWriter_fourcc(*'X264')
         # adjust monitor to crop out the parts not visible
         if monitor['left'] < 0:
             monitor['width'] += monitor['left']
