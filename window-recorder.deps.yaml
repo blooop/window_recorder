@@ -1,0 +1,19 @@
+apt_tools:
+  - git
+  - git-lfs
+  - python3-pip
+  - jq #for auto installing extensions in container
+
+pip_language-toolchain:
+  - uv #use uv instead of pip
+  - pip #update to the latest pip
+
+
+apt_window-recorder:
+  - libglib2.0-0
+  - x11-utils
+  # - ffmpeg
+
+pip_window-recorder:
+  - moviepy-fix-codec
+  - panel
