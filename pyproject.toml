@@ -2,7 +2,7 @@
 name = "window_recorder"
 version = "0.3.0"
 description = "Programatically video record a window as a context manager"
-readme = "README.md" # Optional
+readme = "README.md"                                                       # Optional
 
 # Specify which Python versions you support. In contrast to the
 # 'Programming Language' classifiers above, 'pip install' will check this
@@ -21,18 +21,18 @@ license = { file = "LICENSE.txt" }
 # Note that this is a list of additional keywords, separated
 # by commas, to be used to assist searching for the distribution in a
 # larger catalog.
-keywords = ["video", "recording"]  # Optional
+keywords = ["video", "recording"] # Optional
 authors = [
-    { name = "Sheng Zhong", email = "zhsh@umich.edu" } # Optional
+    { name = "Sheng Zhong", email = "zhsh@umich.edu" }, # Optional
 ]
 maintainers = [
-    { name = "Sheng Zhong", email = "zhsh@umich.edu" } # Optional
+    { name = "Sheng Zhong", email = "zhsh@umich.edu" }, # Optional
 ]
 
 # Classifiers help users find your project by categorizing it.
 #
 # For a list of valid classifiers, see https://pypi.org/classifiers/
-classifiers = [# Optional
+classifiers = [ # Optional
     "Development Status :: 4 - Beta",
     # Indicate who your project is intended for
     "Intended Audience :: Developers",
@@ -51,9 +51,10 @@ classifiers = [# Optional
 #
 # For an analysis of this field vs pip's requirements files see:
 # https://packaging.python.org/discussions/install-requires-vs-requirements/
-dependencies = [# Optional
+dependencies = [ # Optional
     'opencv-python',
     'mss',
+    'ewmh',
 ]
 
 # List additional groups of dependencies here (e.g. development
@@ -77,7 +78,7 @@ test = ["pytest"]
 # issues, where the source is hosted, where to say thanks to the package
 # maintainers, and where to support the project financially. The key is
 # what's used to render the link text on PyPI.
-[project.urls]  # Optional
+[project.urls] # Optional
 "Homepage" = "https://github.com/LemonPi/window_recorder"
 "Bug Reports" = "https://github.com/LemonPi/window_recorder/issues"
 "Source" = "https://github.com/LemonPi/window_recorder"
