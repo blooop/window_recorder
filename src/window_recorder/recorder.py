@@ -44,7 +44,7 @@ class WindowRecorder:
     """Programatically video record a window in Linux (requires xwininfo)"""
 
     def __init__(self, window_names: Iterable[AnyStr] = None, frame_rate=30.0, name_suffix="", save_dir=None,video_path=None,
-                 record=True):
+                 record=True,offset_x:float=0,offset_y:float=0,width_override:float=-1,height_override:float=-1):
         self.record = record
         if not self.record:
             return
@@ -82,6 +82,13 @@ class WindowRecorder:
 
         left, top = int(properties["Absolute upper-left X"]), int(properties["Absolute upper-left Y"])
         width, height = int(properties["Width"]), int(properties["Height"])
+        left+= offset_x
+        top+= offset_y
+        if width_override>0:
+            width = width_override
+        if height_override>0:
+            height = height_override
+
 
         self.monitor = {"top": top, "left": left, "width": width, "height": height}
         self.frame_rate = frame_rate

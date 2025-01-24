@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 vid_path="Captures/uniq12345.mp4"
 
-with WindowRecorder(["RViz"],video_path=vid_path):
+with WindowRecorder(["Isaac"],video_path=vid_path,offset_x=52,offset_y=58,width_override=948,height_override=524):
     start = time.time()
     i = 1
     while time.time() - start < 2:

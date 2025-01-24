@@ -15,5 +15,5 @@ apt_window-recorder:
   # - ffmpeg
 
 pip_window-recorder:
-  - moviepy-fix-codec
   - panel
+  - holobench
